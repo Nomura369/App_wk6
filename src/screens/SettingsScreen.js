@@ -4,11 +4,8 @@ import ListItem from "../components/ListItem";
 const SettingsScreen = () => {
   return (
     <Box mt="$1" borderBottomWidth="$1" borderColor="lightgray">
-      <ListItem
-        title="Display"
-        destination="DisplaySetting"
-      />
-      <ListItem title="Account" />
+      <ListItem title="Display" destination="DisplaySetting" />
+      <ListItem title="Account" destination="AccountSetting" />
     </Box>
   );
 };

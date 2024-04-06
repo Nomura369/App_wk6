@@ -10,6 +10,7 @@ import DetailScreen from '../screens/DetailScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import DisplaySettingScreen from '../screens/DisplaySettingScreen';
 import NullScreen from '../screens/NullScreen';
+import AccountSettingScreen from "../screens/AccountSettingScreen";
 
 import MyTheme from '../theme';
 import ActionButton from '../components/ActionButton';
@@ -80,7 +81,7 @@ const MyTabs = () => {
 
 const SettingsStack = ({ navigation }) => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator headerBackTitleStyle={{color: 'black'}}>
       <Stack.Screen
         name="Settings"
         component={SettingsScreen}
@@ -90,14 +91,14 @@ const SettingsStack = ({ navigation }) => {
             fontWeight: '400',
             fontSize: 20
           },
-          headerLeft: () => (
+          /*headerLeft: () => (
             <MaterialCommunityIcons
               name={'menu'}
               size={20}
               onPress={() => navigation.openDrawer()}
               style={{ marginRight: 20 }}
             />
-          ),
+          ),*/
         }}
       />
       <Stack.Screen
@@ -111,6 +112,22 @@ const SettingsStack = ({ navigation }) => {
           },
         }}
       />
+      <Stack.Screen
+        name="AccountSetting"
+        component={AccountSettingScreen}
+        options={{
+          title: "Account",
+          headerTitleStyle: {
+            fontWeight: "400",
+            fontSize: 20,
+          },
+          headerTintColor: '#000',
+          headerTitleStyle: {
+            fontWeight: '400',
+            fontSize: 20
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 }
@@ -118,11 +135,9 @@ const SettingsStack = ({ navigation }) => {
 const HomeStack = () => {
   return (
     <Stack.Navigator
-      screenOptions={{
-        headerRight: () => (
-          <ActionButton />
-        ),
-      }}
+      /*screenOptions={{
+
+      }}*/
     >
       <Stack.Screen
         name="Home"
