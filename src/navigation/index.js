@@ -10,6 +10,7 @@ import DetailScreen from '../screens/DetailScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import DisplaySettingScreen from '../screens/DisplaySettingScreen';
 import MyTheme from '../theme';
+import ActionButton from '../components/ActionButton';
 
 import albumData from "../json/albums.json";
 
@@ -21,41 +22,6 @@ const Navigation = () => {
     <NavigationContainer theme={MyTheme}>
       <MyTabs />
     </NavigationContainer>
-  );
-}
-
-const CustomDrawerContent = (props) => {
-  const { colors } = useTheme();
-
-  return (
-    <DrawerContentScrollView {...props}
-      contentContainerStyle={{ paddingTop: 0 }}
-    >
-      <Image
-        h={250}
-        w="100%"
-        source={require("../images/drawerTile.jpg")}
-        alt='albumImage'
-      />
-      <DrawerItemList {...props} />
-      <Divider my="$2"/>
-      <DrawerItem 
-        label="Help"
-        activeBackgroundColor={colors.primary100}
-        activeTintColor={colors.primary700}
-        inactiveTintColor={colors.light500}
-        labelStyle={ {fontSize: 18, fontWeight: '400'} }
-        icon={({ color }) => (
-          <MaterialCommunityIcons name="account-question" color={color} size={26} />
-        )}
-        onPress={()=>alert('Need Help ...')}
-      />
-      <HStack pl="$4" alignItems="center">
-        <MaterialCommunityIcons name="magnify" color={colors.light500} size={26} />
-        <Input mx="$3" fontSize={18} placeholder="Input Search Text" flex={1} />
-      </HStack>
-
-    </DrawerContentScrollView>
   );
 }
 
@@ -140,13 +106,14 @@ const SettingsStack = ({ navigation }) => {
   );
 }
 
-const HomeStack = ({ navigation }) => {
-
+const HomeStack = () => {
   return (
     <Stack.Navigator
-    // screenOptions={{
-    //   headerShown: false
-    // }}
+      screenOptions={{
+        headerRight: () => (
+          <ActionButton />
+        ),
+      }}
     >
       <Stack.Screen
         name="Home"
