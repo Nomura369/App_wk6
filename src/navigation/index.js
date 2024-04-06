@@ -9,6 +9,8 @@ import AlbumScreen from '../screens/AlbumScreen';
 import DetailScreen from '../screens/DetailScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import DisplaySettingScreen from '../screens/DisplaySettingScreen';
+import NullScreen from '../screens/NullScreen';
+
 import MyTheme from '../theme';
 import ActionButton from '../components/ActionButton';
 
@@ -48,6 +50,13 @@ const MyTabs = () => {
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
+        }}
+      />
+      <Tab.Screen
+        name="ActionButton"
+        component={NullScreen}
+        options={{
+          tabBarButton: () => <ActionButton />,
         }}
       />
       <Tab.Screen

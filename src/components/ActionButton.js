@@ -11,20 +11,26 @@ import {
     ActionsheetItemText,
     ActionsheetContent,
   } from "@gluestack-ui/themed";
-
-  import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-  
+ 
   export default () => {
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(!showActionsheet);
     return (
-      <Box>
-        <MaterialCommunityIcons
-          name={"account-cog"}
-          size={25}
+        <Box>
+        <Pressable
           onPress={handleClose}
-          // style={{ marginRight: 20 }}
-        />
+          bg="$primary500"
+          width="$10"
+          height="$10"
+          hardShadow="5"
+          borderRadius="$full"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Text color="white" size="3xl">
+            +
+          </Text>
+        </Pressable>
         <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
           <ActionsheetBackdrop />
           <ActionsheetContent h="$72" zIndex={999}>
