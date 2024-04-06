@@ -10,7 +10,7 @@ const DetailScreen = ({ route }) => {
     description
   } = route.params;
   return (
-    <Center>
+    <Center flex={1}>
       <ScrollView>
           <Image
             style={{ width: "100%", height: 300 }}

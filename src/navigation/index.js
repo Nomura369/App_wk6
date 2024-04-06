@@ -1,16 +1,9 @@
+import { Platform } from 'react-native';
 import { NavigationContainer, useTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {
-  createDrawerNavigator,
-  DrawerContentScrollView,
-  DrawerItemList,
-  DrawerItem,
-} from '@react-navigation/drawer';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
-import { Divider, Image, Input, HStack, Text } from '@gluestack-ui/themed';
 
 import AlbumScreen from '../screens/AlbumScreen';
 import DetailScreen from '../screens/DetailScreen';
@@ -22,12 +15,11 @@ import albumData from "../json/albums.json";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
 
 const Navigation = () => {
   return (
     <NavigationContainer theme={MyTheme}>
-      <MyDrawer />
+      <MyTabs />
     </NavigationContainer>
   );
 }
@@ -67,47 +59,6 @@ const CustomDrawerContent = (props) => {
   );
 }
 
-const MyDrawer = () => {
-  const { colors } = useTheme();
-
-  return (
-    <Drawer.Navigator
-      initialRouteName="HomeStack"
-      screenOptions={{
-        drawerActiveBackgroundColor: colors.primary100,
-        drawerActiveTintColor: colors.primary700,
-        drawerInactiveTintColor: colors.light500,
-        drawerStyle: { width: 250 },
-        drawerLabelStyle: { fontSize: 18, fontWeight: '400' },
-      }}
-      drawerContent={props => <CustomDrawerContent {...props} />}
-    >
-      <Drawer.Screen
-        name="HomeStack"
-        component={HomeStack}
-        options={{
-          headerShown: false,
-          drawerLabel: "Home",
-          drawerIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="SettingsStack"
-        component={SettingsStack}
-        options={{
-          headerShown: false,
-          drawerLabel: "Settings",
-          drawerIcon: ({ color }) => (
-            <MaterialCommunityIcons name="cog" color={color} size={26} />
-          ),
-        }}
-      />
-    </Drawer.Navigator>
-  );
-}
-
 const MyTabs = () => {
   const { colors } = useTheme();
 
@@ -117,7 +68,9 @@ const MyTabs = () => {
       screenOptions={{
         tabBarInactiveTintColor: colors.light500,
         tabBarActiveTintColor: colors.primary700,
-        // headerShown: false
+        tabBarStyle: { 
+          paddingBottom: Platform.OS === 'ios' ? 30 : 5, // 根據平台不同進行條件式渲染
+        },
       }}
     >
       <Tab.Screen
@@ -204,14 +157,6 @@ const HomeStack = ({ navigation }) => {
             fontWeight: '400',
             fontSize: 20
           },
-          headerLeft: () => (
-            <MaterialCommunityIcons
-              name={'menu'}
-              size={20}
-              onPress={() => navigation.openDrawer()}
-              style={{ marginRight: 20 }}
-            />
-          ),
         }}
       />
       <Stack.Screen

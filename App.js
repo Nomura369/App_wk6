@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { Platform } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import Navigation from "./src/navigation/index";
 import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
@@ -7,11 +8,9 @@ import { config } from '@gluestack-ui/config';
 const App = () => {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{flex: 1}}>
-        <GluestackUIProvider config={config}>
-          <Navigation />   
-        </GluestackUIProvider>         
-      </SafeAreaView>  
+      <GluestackUIProvider config={config}>
+        <Navigation />   
+      </GluestackUIProvider>           
     </SafeAreaProvider>
   );
 };
