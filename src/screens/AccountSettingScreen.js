@@ -1,25 +1,18 @@
 import { useState } from 'react';
 import SegmentedControlTab from "react-native-segmented-control-tab";
-import { Box, Text, Center } from "@gluestack-ui/themed";
+import { Box } from "@gluestack-ui/themed";
+
+import GeneralAccountScreen from "../screens/GeneralAccountScreen";
+import AdvancedAccountScreen from "../screens/AdvancedAccountScreen";
 
 
 export default function TabAccountSettingScreeniewExample() {
    const [selectedIndex, setSelectedIndex] = useState(0);
 
    const SegmentedContent = () => {
-      if (selectedIndex == 1) {
-         return (
-            <Center flex={1} >
-               <Text>This is an Advanced Account Setting Page</Text>
-            </Center>
-         )
-      } else {
-         return (
-            <Center flex={1} >
-               <Text>This is a General Account Setting Page</Text>
-            </Center>
-         )
-      }
+      return(
+         selectedIndex == 0 ? <GeneralAccountScreen /> : <AdvancedAccountScreen />
+      );
    }
 
    return (
