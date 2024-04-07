@@ -1,4 +1,5 @@
 import { Platform } from 'react-native';
+import { KeyboardAvoidingView } from "@gluestack-ui/themed";
 import { NavigationContainer, useTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -22,9 +23,15 @@ const Tab = createBottomTabNavigator();
 
 const Navigation = () => {
   return (
-    <NavigationContainer theme={MyTheme}>
-      <MyTabs />
-    </NavigationContainer>
+    <KeyboardAvoidingView
+      keyboardVerticalOffset={Platform.select({ ios: 0, android: -500 })}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      flex={1}
+    >
+      <NavigationContainer theme={MyTheme}>
+        <MyTabs />
+      </NavigationContainer>
+    </KeyboardAvoidingView>
   );
 }
 
